@@ -1,54 +1,73 @@
-import React, { useState } from 'react';
-import './header.css'; // Asegúrate de que esta ruta sea correcta
+import React, { useState } from "react";
+import { AiOutlineMenu, AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
+import { BsFillCartFill } from "react-icons/bs";
+import { TbTruckDelivery } from "react-icons/tb";
+import { FaWallet } from "react-icons/fa";
+import { MdFavorite, MdHelp } from "react-icons/md";
+
+import { CiMap } from "react-icons/ci";
+import { LuGalleryHorizontalEnd } from "react-icons/lu";
+import { IoExitOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";  // Importamos Link aquí
 
 const MenuComponent = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [nav, setNav] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const menuItems = [
+    { icon: <CiMap size={25} className="mr-4 " />, text: "Mapa", route: "/mapa" },
+    { icon: <MdFavorite size={25} className="mr-4" />, text: "Gamificación", route: "/gamificacion" },
+    { icon: <FaWallet size={25} className="mr-4" />, text: "Obras", route: "/obras" },
+    { icon: <LuGalleryHorizontalEnd size={25} className="mr-4" />, text: "Galería Virtual", route: "/galeria-virtual" },
+    { icon: <IoExitOutline size={25} className="mr-4" />, text: "Cerrar Sesión", route: "/cerrar-sesion" },
+  ];
 
   return (
-    <div className="text-white relative">
-      <button onClick={toggleMenu} className="focus:outline-none">
-        <svg
-          className="w-8 h-8"
-          fill="none"
-          stroke="black"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1"
-            d="M4 6h16M4 12h16M4 18h16"
-          ></path>
-        </svg>
-      </button>
+    <div className="max-w-[1640px] p-4 shadow-sm">
+      {/* Left side */}
+      <div onClick={() => setNav(!nav)} className="cursor-pointer">
+        <AiOutlineMenu size={30} />
+      </div>
 
-      {/* Menú desplegable */}
-      {isOpen && (
-        <div className="absolute top-0 left-10 w-full bg-white shadow-lg rounded-md transform -translate-x-full menu-slide-in">
-          <ul className="py-1">
-            <li>
-              <a href="#" className=" px-4 py-2 text-gray-800 hover:bg-gray-100">
-                Opción 1
-              </a>
-            </li>
-            <li>
-              <a href="#" className="px-4 py-2 text-gray-800 hover:bg-gray-100">
-                Opción 2
-              </a>
-            </li>
-            <li>
-              <a href="#" className="px-4 py-2 text-gray-800 hover:bg-gray-100">
-                Opción 3
-              </a>
-            </li>
-          </ul>
-        </div>
+      {/* Mobile Menu */}
+      {/* Overlay */}
+      {nav ? (
+        <div className="bg-black/80 fixed w-full h-screen z-10 top-0 left-0"></div>
+      ) : (
+        ""
       )}
+
+      {/* Side drawer menu */}
+      <div
+        className={
+          nav
+            ? "fixed top-0 left-0 w-[300px] h-screen bg-white z-10 duration-300"
+            : "fixed top-0 left-[-100%] w-[300px] h-screen bg-white z-10 duration-300"
+        }
+      >
+        <AiOutlineClose
+          onClick={() => setNav(!nav)}
+          size={30}
+          className="absolute right-4 top-4 cursor-pointer"
+        />
+        <h2 className="text-2xl p-4">
+          SIB <span className="font-bold">HAD</span>
+        </h2>
+        <nav>
+          <ul className="flex flex-col p-4 text-gray-800">
+            {menuItems.map(({ icon, text, route }, index) => {
+              return (
+                <div key={index} className="py-4">
+                  <Link to={route}>
+                    <li className="text-xl flex cursor-pointer mx-auto p-2 hover:text-white hover:bg-black">
+                      {icon} {text}
+                    </li>
+                  </Link>
+                </div>
+              );
+            })}
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 };
