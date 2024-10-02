@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { AiOutlineMenu, AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
-import { BsFillCartFill } from "react-icons/bs";
-import { TbTruckDelivery } from "react-icons/tb";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { FaWallet } from "react-icons/fa";
-import { MdFavorite, MdHelp } from "react-icons/md";
+import { IoLibraryOutline } from "react-icons/io5";
 
 import { CiMap } from "react-icons/ci";
 import { LuGalleryHorizontalEnd } from "react-icons/lu";
@@ -15,7 +13,7 @@ const MenuComponent = () => {
 
   const menuItems = [
     { icon: <CiMap size={25} className="mr-4 " />, text: "Mapa", route: "/mapa" },
-    { icon: <MdFavorite size={25} className="mr-4" />, text: "Gamificación", route: "/gamificacion" },
+    { icon: <IoLibraryOutline size={25} className="mr-4" />, text: "Gamificación", route: "/gamificacion" },
     { icon: <FaWallet size={25} className="mr-4" />, text: "Obras", route: "/obras" },
     { icon: <LuGalleryHorizontalEnd size={25} className="mr-4" />, text: "Galería Virtual", route: "/galeria-virtual" },
     { icon: <IoExitOutline size={25} className="mr-4" />, text: "Cerrar Sesión", route: "/cerrar-sesion" },
