@@ -1,0 +1,19 @@
+{
+  "name": "backend_art_works_register",
+  "version": "1.0.0",
+  "description": "Back for app register art work",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./app.js"
+  },
+  "author": "Erik Molina",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mysql2": "^3.11.3",
+    "sequelize": "^6.37.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
