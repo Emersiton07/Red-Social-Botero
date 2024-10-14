@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,20 +14,29 @@ const Login = () => {
     // Verifica si el email y la contraseña son correctos (solo para ejemplo)
     if (email === 'a@a' && password === '1') {
       // Simula un inicio de sesión exitoso
-      navigate('/'); 
+      navigate('/');
     } else {
       setError('Credenciales incorrectas');
     }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-full max-w-xs">
+    <div
+      className="flex justify-center items-center h-screen"
+      style={{
+        backgroundImage: 'url("/login_back.jpg")', // Reemplaza por tu URL de imagen
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      <div className="w-full max-w-md">
         <form
           onSubmit={handleLogin}
-          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          className="shadow-md rounded-xl px-16 pt-6 pb-8"
+          style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}
         >
-          <h2 className="text-2xl font-bold mb-6 text-center">Iniciar Sesión</h2>
+          <h2 className="text-2xl font-bold mt-6 mb-12 text-center">Iniciar Sesión</h2>
 
           {error && (
             <p className="text-red-500 text-xs italic mb-4">{error}</p>
@@ -70,14 +78,30 @@ const Login = () => {
             />
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex justify-center">
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="flex items-center px-16 py-2 rounded-xl bg-stone-950 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] text-xl text-white"
             >
-              Iniciar Sesión
+              Ingresar
             </button>
           </div>
+
+          <div className='flex justify-around my-10 mx-6'>
+            <h4>No Tienes una cuenta?</h4>
+            <Link to="/registrarse" className="text-blue-700">
+              Registrarse
+            </Link>
+
+          </div>
+
+          <button
+            className="flex items-center justify-center w-full py-2 rounded-xl bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] text-xl"
+          >
+            <img src="/google.svg" alt="Google Icon" className="size-8 mr-2" />
+            Iniciar con Google
+          </button>
+
         </form>
       </div>
     </div>
