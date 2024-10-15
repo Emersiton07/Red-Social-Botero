@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express()
-const querys = require('./querys')
+const historicalContext = require('./routes/historicalContextRoute');
 
 
-app.get('/', (req, res) => {
-    res.send('Hola universo!');
-});
+app.use(express.json());
+
+app.use('/api/historical', historicalContext);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
