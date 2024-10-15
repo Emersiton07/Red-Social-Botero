@@ -1,13 +1,11 @@
-const mysql = require('mysql2');
 const { Sequelize } = require('sequelize')
+require('dotenv').config();
 
-
-const sequelize = new Sequelize('sql10732878', 'avnadmin', ' ', {
-    host: 'telematics-bd-telematics858.i.aivencloud.com',
-    port: 23739,
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
     dialect: 'mysql'
 })
-
 
 const testConnection = async () => {
     try {
